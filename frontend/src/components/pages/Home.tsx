@@ -1,11 +1,12 @@
-import { Button } from "../ui/button";
-
-function Index() {
+function Home() {
   return (
-    <div className="p-2">
-      <h3>Welcome Home!</h3>
-      <Button>LOGIN</Button>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
+      <h1 className="text-4xl font-bold mb-4">Välkommen till RegisterCheck</h1>
+      <p className="text-lg text-gray-600 mb-6 text-center">
+        Hantera och spåra dina anställdas utdrag ur belastningsregistret enkelt och säkert.
+      </p>
     </div>
   );
 }
-export { Index };
+
+export default Home;
