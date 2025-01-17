@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as ProfileProfileRouteImport } from './routes/Profile/ProfileRoute'
 import { Route as NotificationsNotificationRouteImport } from './routes/Notifications/NotificationRoute'
+import { Route as LoginLoginRouteImport } from './routes/Login/LoginRoute'
 import { Route as HomeHomeRouteImport } from './routes/Home/HomeRoute'
 import { Route as DashboardDashboardRouteImport } from './routes/Dashboard/DashboardRoute'
 import { Route as AddEmployeeAddEmployeeRouteImport } from './routes/AddEmployee/AddEmployeeRoute'
@@ -31,6 +32,12 @@ const NotificationsNotificationRouteRoute =
     path: '/Notifications/NotificationRoute',
     getParentRoute: () => rootRoute,
   } as any)
+
+const LoginLoginRouteRoute = LoginLoginRouteImport.update({
+  id: '/Login/LoginRoute',
+  path: '/Login/LoginRoute',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const HomeHomeRouteRoute = HomeHomeRouteImport.update({
   id: '/Home/HomeRoute',
@@ -76,6 +83,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HomeHomeRouteImport
       parentRoute: typeof rootRoute
     }
+    '/Login/LoginRoute': {
+      id: '/Login/LoginRoute'
+      path: '/Login/LoginRoute'
+      fullPath: '/Login/LoginRoute'
+      preLoaderRoute: typeof LoginLoginRouteImport
+      parentRoute: typeof rootRoute
+    }
     '/Notifications/NotificationRoute': {
       id: '/Notifications/NotificationRoute'
       path: '/Notifications/NotificationRoute'
@@ -99,6 +113,7 @@ export interface FileRoutesByFullPath {
   '/AddEmployee/AddEmployeeRoute': typeof AddEmployeeAddEmployeeRouteRoute
   '/Dashboard/DashboardRoute': typeof DashboardDashboardRouteRoute
   '/Home/HomeRoute': typeof HomeHomeRouteRoute
+  '/Login/LoginRoute': typeof LoginLoginRouteRoute
   '/Notifications/NotificationRoute': typeof NotificationsNotificationRouteRoute
   '/Profile/ProfileRoute': typeof ProfileProfileRouteRoute
 }
@@ -107,6 +122,7 @@ export interface FileRoutesByTo {
   '/AddEmployee/AddEmployeeRoute': typeof AddEmployeeAddEmployeeRouteRoute
   '/Dashboard/DashboardRoute': typeof DashboardDashboardRouteRoute
   '/Home/HomeRoute': typeof HomeHomeRouteRoute
+  '/Login/LoginRoute': typeof LoginLoginRouteRoute
   '/Notifications/NotificationRoute': typeof NotificationsNotificationRouteRoute
   '/Profile/ProfileRoute': typeof ProfileProfileRouteRoute
 }
@@ -116,6 +132,7 @@ export interface FileRoutesById {
   '/AddEmployee/AddEmployeeRoute': typeof AddEmployeeAddEmployeeRouteRoute
   '/Dashboard/DashboardRoute': typeof DashboardDashboardRouteRoute
   '/Home/HomeRoute': typeof HomeHomeRouteRoute
+  '/Login/LoginRoute': typeof LoginLoginRouteRoute
   '/Notifications/NotificationRoute': typeof NotificationsNotificationRouteRoute
   '/Profile/ProfileRoute': typeof ProfileProfileRouteRoute
 }
@@ -126,6 +143,7 @@ export interface FileRouteTypes {
     | '/AddEmployee/AddEmployeeRoute'
     | '/Dashboard/DashboardRoute'
     | '/Home/HomeRoute'
+    | '/Login/LoginRoute'
     | '/Notifications/NotificationRoute'
     | '/Profile/ProfileRoute'
   fileRoutesByTo: FileRoutesByTo
@@ -133,6 +151,7 @@ export interface FileRouteTypes {
     | '/AddEmployee/AddEmployeeRoute'
     | '/Dashboard/DashboardRoute'
     | '/Home/HomeRoute'
+    | '/Login/LoginRoute'
     | '/Notifications/NotificationRoute'
     | '/Profile/ProfileRoute'
   id:
@@ -140,6 +159,7 @@ export interface FileRouteTypes {
     | '/AddEmployee/AddEmployeeRoute'
     | '/Dashboard/DashboardRoute'
     | '/Home/HomeRoute'
+    | '/Login/LoginRoute'
     | '/Notifications/NotificationRoute'
     | '/Profile/ProfileRoute'
   fileRoutesById: FileRoutesById
@@ -149,6 +169,7 @@ export interface RootRouteChildren {
   AddEmployeeAddEmployeeRouteRoute: typeof AddEmployeeAddEmployeeRouteRoute
   DashboardDashboardRouteRoute: typeof DashboardDashboardRouteRoute
   HomeHomeRouteRoute: typeof HomeHomeRouteRoute
+  LoginLoginRouteRoute: typeof LoginLoginRouteRoute
   NotificationsNotificationRouteRoute: typeof NotificationsNotificationRouteRoute
   ProfileProfileRouteRoute: typeof ProfileProfileRouteRoute
 }
@@ -157,6 +178,7 @@ const rootRouteChildren: RootRouteChildren = {
   AddEmployeeAddEmployeeRouteRoute: AddEmployeeAddEmployeeRouteRoute,
   DashboardDashboardRouteRoute: DashboardDashboardRouteRoute,
   HomeHomeRouteRoute: HomeHomeRouteRoute,
+  LoginLoginRouteRoute: LoginLoginRouteRoute,
   NotificationsNotificationRouteRoute: NotificationsNotificationRouteRoute,
   ProfileProfileRouteRoute: ProfileProfileRouteRoute,
 }
@@ -174,6 +196,7 @@ export const routeTree = rootRoute
         "/AddEmployee/AddEmployeeRoute",
         "/Dashboard/DashboardRoute",
         "/Home/HomeRoute",
+        "/Login/LoginRoute",
         "/Notifications/NotificationRoute",
         "/Profile/ProfileRoute"
       ]
@@ -186,6 +209,9 @@ export const routeTree = rootRoute
     },
     "/Home/HomeRoute": {
       "filePath": "Home/HomeRoute.tsx"
+    },
+    "/Login/LoginRoute": {
+      "filePath": "Login/LoginRoute.tsx"
     },
     "/Notifications/NotificationRoute": {
       "filePath": "Notifications/NotificationRoute.tsx"
