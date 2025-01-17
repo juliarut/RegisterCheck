@@ -11,7 +11,6 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as IndexImport } from './routes/index'
 import { Route as ProfileProfileRouteImport } from './routes/Profile/ProfileRoute'
 import { Route as NotificationsNotificationRouteImport } from './routes/Notifications/NotificationRoute'
 import { Route as HomeHomeRouteImport } from './routes/Home/HomeRoute'
@@ -19,12 +18,6 @@ import { Route as DashboardDashboardRouteImport } from './routes/Dashboard/Dashb
 import { Route as AddEmployeeAddEmployeeRouteImport } from './routes/AddEmployee/AddEmployeeRoute'
 
 // Create/Update Routes
-
-const IndexRoute = IndexImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const ProfileProfileRouteRoute = ProfileProfileRouteImport.update({
   id: '/Profile/ProfileRoute',
@@ -62,13 +55,6 @@ const AddEmployeeAddEmployeeRouteRoute =
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
     '/AddEmployee/AddEmployeeRoute': {
       id: '/AddEmployee/AddEmployeeRoute'
       path: '/AddEmployee/AddEmployeeRoute'
@@ -110,7 +96,6 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
   '/AddEmployee/AddEmployeeRoute': typeof AddEmployeeAddEmployeeRouteRoute
   '/Dashboard/DashboardRoute': typeof DashboardDashboardRouteRoute
   '/Home/HomeRoute': typeof HomeHomeRouteRoute
@@ -119,7 +104,6 @@ export interface FileRoutesByFullPath {
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
   '/AddEmployee/AddEmployeeRoute': typeof AddEmployeeAddEmployeeRouteRoute
   '/Dashboard/DashboardRoute': typeof DashboardDashboardRouteRoute
   '/Home/HomeRoute': typeof HomeHomeRouteRoute
@@ -129,7 +113,6 @@ export interface FileRoutesByTo {
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  '/': typeof IndexRoute
   '/AddEmployee/AddEmployeeRoute': typeof AddEmployeeAddEmployeeRouteRoute
   '/Dashboard/DashboardRoute': typeof DashboardDashboardRouteRoute
   '/Home/HomeRoute': typeof HomeHomeRouteRoute
@@ -140,7 +123,6 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
     | '/AddEmployee/AddEmployeeRoute'
     | '/Dashboard/DashboardRoute'
     | '/Home/HomeRoute'
@@ -148,7 +130,6 @@ export interface FileRouteTypes {
     | '/Profile/ProfileRoute'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
     | '/AddEmployee/AddEmployeeRoute'
     | '/Dashboard/DashboardRoute'
     | '/Home/HomeRoute'
@@ -156,7 +137,6 @@ export interface FileRouteTypes {
     | '/Profile/ProfileRoute'
   id:
     | '__root__'
-    | '/'
     | '/AddEmployee/AddEmployeeRoute'
     | '/Dashboard/DashboardRoute'
     | '/Home/HomeRoute'
@@ -166,7 +146,6 @@ export interface FileRouteTypes {
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
   AddEmployeeAddEmployeeRouteRoute: typeof AddEmployeeAddEmployeeRouteRoute
   DashboardDashboardRouteRoute: typeof DashboardDashboardRouteRoute
   HomeHomeRouteRoute: typeof HomeHomeRouteRoute
@@ -175,7 +154,6 @@ export interface RootRouteChildren {
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
   AddEmployeeAddEmployeeRouteRoute: AddEmployeeAddEmployeeRouteRoute,
   DashboardDashboardRouteRoute: DashboardDashboardRouteRoute,
   HomeHomeRouteRoute: HomeHomeRouteRoute,
@@ -193,16 +171,12 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/",
         "/AddEmployee/AddEmployeeRoute",
         "/Dashboard/DashboardRoute",
         "/Home/HomeRoute",
         "/Notifications/NotificationRoute",
         "/Profile/ProfileRoute"
       ]
-    },
-    "/": {
-      "filePath": "index.tsx"
     },
     "/AddEmployee/AddEmployeeRoute": {
       "filePath": "AddEmployee/AddEmployeeRoute.tsx"
