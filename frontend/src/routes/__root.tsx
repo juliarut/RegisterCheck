@@ -1,6 +1,6 @@
 import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
-import React, { useState } from "react";
+import { useState } from "react";
 
 export const Route = createRootRoute({
   component: () => {
@@ -10,7 +10,7 @@ export const Route = createRootRoute({
       <>
         <header className="p-2 flex gap-4 bg-gray-800 text-white">
           <Link
-            to="/Home/HomeRoute"
+            to="/Index"
             activeProps={{
               className: "font-bold",
             }}
@@ -30,7 +30,7 @@ export const Route = createRootRoute({
               >
                 Dashboard
               </Link>
-            
+
               <Link
                 to="/Profile/ProfileRoute"
                 activeProps={{
@@ -39,7 +39,6 @@ export const Route = createRootRoute({
               >
                 Profile
               </Link>
-          
             </>
           )}
 

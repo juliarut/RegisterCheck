@@ -11,15 +11,21 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as IndexImport } from './routes/Index'
 import { Route as ProfileProfileRouteImport } from './routes/Profile/ProfileRoute'
 import { Route as NotificationsNotificationRouteImport } from './routes/Notifications/NotificationRoute'
 import { Route as LoginLoginRouteImport } from './routes/Login/LoginRoute'
-import { Route as HomeHomeRouteImport } from './routes/Home/HomeRoute'
 import { Route as EmployeesEmployeesRouteImport } from './routes/Employees/EmployeesRoute'
 import { Route as DashboardDashboardRouteImport } from './routes/Dashboard/DashboardRoute'
 import { Route as AddEmployeeAddEmployeeRouteImport } from './routes/AddEmployee/AddEmployeeRoute'
 
 // Create/Update Routes
+
+const IndexRoute = IndexImport.update({
+  id: '/Index',
+  path: '/Index',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const ProfileProfileRouteRoute = ProfileProfileRouteImport.update({
   id: '/Profile/ProfileRoute',
@@ -37,12 +43,6 @@ const NotificationsNotificationRouteRoute =
 const LoginLoginRouteRoute = LoginLoginRouteImport.update({
   id: '/Login/LoginRoute',
   path: '/Login/LoginRoute',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const HomeHomeRouteRoute = HomeHomeRouteImport.update({
-  id: '/Home/HomeRoute',
-  path: '/Home/HomeRoute',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -69,6 +69,13 @@ const AddEmployeeAddEmployeeRouteRoute =
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/Index': {
+      id: '/Index'
+      path: '/Index'
+      fullPath: '/Index'
+      preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
     '/AddEmployee/AddEmployeeRoute': {
       id: '/AddEmployee/AddEmployeeRoute'
       path: '/AddEmployee/AddEmployeeRoute'
@@ -88,13 +95,6 @@ declare module '@tanstack/react-router' {
       path: '/Employees/EmployeesRoute'
       fullPath: '/Employees/EmployeesRoute'
       preLoaderRoute: typeof EmployeesEmployeesRouteImport
-      parentRoute: typeof rootRoute
-    }
-    '/Home/HomeRoute': {
-      id: '/Home/HomeRoute'
-      path: '/Home/HomeRoute'
-      fullPath: '/Home/HomeRoute'
-      preLoaderRoute: typeof HomeHomeRouteImport
       parentRoute: typeof rootRoute
     }
     '/Login/LoginRoute': {
@@ -124,20 +124,20 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
+  '/Index': typeof IndexRoute
   '/AddEmployee/AddEmployeeRoute': typeof AddEmployeeAddEmployeeRouteRoute
   '/Dashboard/DashboardRoute': typeof DashboardDashboardRouteRoute
   '/Employees/EmployeesRoute': typeof EmployeesEmployeesRouteRoute
-  '/Home/HomeRoute': typeof HomeHomeRouteRoute
   '/Login/LoginRoute': typeof LoginLoginRouteRoute
   '/Notifications/NotificationRoute': typeof NotificationsNotificationRouteRoute
   '/Profile/ProfileRoute': typeof ProfileProfileRouteRoute
 }
 
 export interface FileRoutesByTo {
+  '/Index': typeof IndexRoute
   '/AddEmployee/AddEmployeeRoute': typeof AddEmployeeAddEmployeeRouteRoute
   '/Dashboard/DashboardRoute': typeof DashboardDashboardRouteRoute
   '/Employees/EmployeesRoute': typeof EmployeesEmployeesRouteRoute
-  '/Home/HomeRoute': typeof HomeHomeRouteRoute
   '/Login/LoginRoute': typeof LoginLoginRouteRoute
   '/Notifications/NotificationRoute': typeof NotificationsNotificationRouteRoute
   '/Profile/ProfileRoute': typeof ProfileProfileRouteRoute
@@ -145,10 +145,10 @@ export interface FileRoutesByTo {
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
+  '/Index': typeof IndexRoute
   '/AddEmployee/AddEmployeeRoute': typeof AddEmployeeAddEmployeeRouteRoute
   '/Dashboard/DashboardRoute': typeof DashboardDashboardRouteRoute
   '/Employees/EmployeesRoute': typeof EmployeesEmployeesRouteRoute
-  '/Home/HomeRoute': typeof HomeHomeRouteRoute
   '/Login/LoginRoute': typeof LoginLoginRouteRoute
   '/Notifications/NotificationRoute': typeof NotificationsNotificationRouteRoute
   '/Profile/ProfileRoute': typeof ProfileProfileRouteRoute
@@ -157,28 +157,28 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/Index'
     | '/AddEmployee/AddEmployeeRoute'
     | '/Dashboard/DashboardRoute'
     | '/Employees/EmployeesRoute'
-    | '/Home/HomeRoute'
     | '/Login/LoginRoute'
     | '/Notifications/NotificationRoute'
     | '/Profile/ProfileRoute'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/Index'
     | '/AddEmployee/AddEmployeeRoute'
     | '/Dashboard/DashboardRoute'
     | '/Employees/EmployeesRoute'
-    | '/Home/HomeRoute'
     | '/Login/LoginRoute'
     | '/Notifications/NotificationRoute'
     | '/Profile/ProfileRoute'
   id:
     | '__root__'
+    | '/Index'
     | '/AddEmployee/AddEmployeeRoute'
     | '/Dashboard/DashboardRoute'
     | '/Employees/EmployeesRoute'
-    | '/Home/HomeRoute'
     | '/Login/LoginRoute'
     | '/Notifications/NotificationRoute'
     | '/Profile/ProfileRoute'
@@ -186,20 +186,20 @@ export interface FileRouteTypes {
 }
 
 export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
   AddEmployeeAddEmployeeRouteRoute: typeof AddEmployeeAddEmployeeRouteRoute
   DashboardDashboardRouteRoute: typeof DashboardDashboardRouteRoute
   EmployeesEmployeesRouteRoute: typeof EmployeesEmployeesRouteRoute
-  HomeHomeRouteRoute: typeof HomeHomeRouteRoute
   LoginLoginRouteRoute: typeof LoginLoginRouteRoute
   NotificationsNotificationRouteRoute: typeof NotificationsNotificationRouteRoute
   ProfileProfileRouteRoute: typeof ProfileProfileRouteRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
   AddEmployeeAddEmployeeRouteRoute: AddEmployeeAddEmployeeRouteRoute,
   DashboardDashboardRouteRoute: DashboardDashboardRouteRoute,
   EmployeesEmployeesRouteRoute: EmployeesEmployeesRouteRoute,
-  HomeHomeRouteRoute: HomeHomeRouteRoute,
   LoginLoginRouteRoute: LoginLoginRouteRoute,
   NotificationsNotificationRouteRoute: NotificationsNotificationRouteRoute,
   ProfileProfileRouteRoute: ProfileProfileRouteRoute,
@@ -215,14 +215,17 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
+        "/Index",
         "/AddEmployee/AddEmployeeRoute",
         "/Dashboard/DashboardRoute",
         "/Employees/EmployeesRoute",
-        "/Home/HomeRoute",
         "/Login/LoginRoute",
         "/Notifications/NotificationRoute",
         "/Profile/ProfileRoute"
       ]
+    },
+    "/Index": {
+      "filePath": "Index.tsx"
     },
     "/AddEmployee/AddEmployeeRoute": {
       "filePath": "AddEmployee/AddEmployeeRoute.tsx"
@@ -232,9 +235,6 @@ export const routeTree = rootRoute
     },
     "/Employees/EmployeesRoute": {
       "filePath": "Employees/EmployeesRoute.tsx"
-    },
-    "/Home/HomeRoute": {
-      "filePath": "Home/HomeRoute.tsx"
     },
     "/Login/LoginRoute": {
       "filePath": "Login/LoginRoute.tsx"
