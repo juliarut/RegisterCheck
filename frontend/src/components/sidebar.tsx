@@ -15,6 +15,11 @@ export default function Sidebar() {
             </a>
           </li>
           <li>
+            <a href="/employees/add" className="block p-4 hover:bg-gray-700">
+              Lägg till anställd
+            </a>
+          </li>
+          <li>
             <a href="/settings" className="block p-4 hover:bg-gray-700">
               Inställningar
             </a>

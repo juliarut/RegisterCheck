@@ -30,14 +30,7 @@ export const Route = createRootRoute({
               >
                 Dashboard
               </Link>
-              <Link
-                to="/Notifications/NotificationRoute"
-                activeProps={{
-                  className: "font-bold",
-                }}
-              >
-                Notifications
-              </Link>
+            
               <Link
                 to="/Profile/ProfileRoute"
                 activeProps={{
@@ -46,14 +39,7 @@ export const Route = createRootRoute({
               >
                 Profile
               </Link>
-              <Link
-                to="/AddEmployee/AddEmployeeRoute"
-                activeProps={{
-                  className: "font-bold",
-                }}
-              >
-                Add Employee
-              </Link>
+          
             </>
           )}
 
