@@ -22,8 +22,8 @@ export default function Employees() {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Anställda</h1>
-      <table className="w-full border-collapse border border-gray-300">
+      <h1 className="text-2xl font-bold mb-4 ml-48">Anställda</h1>
+      <table className="border-collapse border border-gray-300 ml-48">
         <thead>
           <tr>
             <th className="border border-gray-300 p-2 text-left">ID</th>
