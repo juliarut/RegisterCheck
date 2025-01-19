@@ -6,8 +6,6 @@ namespace backend.Models
         public string Message { get; set; }
         public DateTime CreatedAt { get; set; }
         public int EmployeeId { get; set; }
-
-        // Navigationsprop för relation
         public Employee Employee { get; set; }
     }
 }
