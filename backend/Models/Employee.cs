@@ -6,6 +6,8 @@ namespace backend.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public DateTime RegisterDate { get; set; }
-        public DateTime ExpiryDate { get; set; }
+        public ICollection<Extract> Extracts { get; set; }
     }
+
+    
 }
