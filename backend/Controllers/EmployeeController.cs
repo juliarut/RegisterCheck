@@ -19,19 +19,23 @@ namespace backend.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllEmployees()
         {
-            var employees = await _context.Employees.Include(e => e.Extracts).ToListAsync();
+            var employees = await _context.Employees
+                .Include(e => e.Extracts)
+                .ToListAsync();
+
             return Ok(employees);
         }
 
+        
         [HttpPost]
         public async Task<IActionResult> AddEmployee(Employee employee)
         {
             _context.Employees.Add(employee);
             await _context.SaveChangesAsync();
+
             return CreatedAtAction(nameof(GetAllEmployees), new { id = employee.Id }, employee);
         }
 
-    
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateEmployee(int id, Employee updatedEmployee)
         {
@@ -61,6 +65,29 @@ namespace backend.Controllers
             _context.Employees.Remove(employee);
             await _context.SaveChangesAsync();
             return NoContent();
+        }
+
+        [HttpGet("{id}/extracts")]
+        public async Task<IActionResult> GetEmployeeExtracts(int id)
+        {
+            var employee = await _context.Employees
+                .Include(e => e.Extracts)
+                .FirstOrDefaultAsync(e => e.Id == id);
+
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            var extracts = employee.Extracts.Select(extract => new
+            {
+                extract.Id,
+                extract.ValidFrom,
+                extract.ValidTo,
+                DaysRemaining = (extract.ValidTo - DateTime.UtcNow).Days
+            });
+
+            return Ok(extracts);
         }
     }
 }
