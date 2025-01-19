@@ -33,7 +33,12 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+   
     dbContext.Database.Migrate();
+
+    
+    DbInitializer.Initialize(dbContext);
 }
 
 if (app.Environment.IsDevelopment())
@@ -43,10 +48,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseCors("AllowAll");
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
